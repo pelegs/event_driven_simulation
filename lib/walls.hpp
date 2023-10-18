@@ -11,7 +11,6 @@ class Wall {
 
 public:
   Wall(const vec &p1, const vec &p2, const sf::Color &color);
-  Wall(const vec &p1, const vec &direction, double length, const sf::Color &color);
   ~Wall();
 
   // Getters
@@ -28,7 +27,7 @@ public:
   void set_p1(const vec &pt);
   void set_p2(const vec &pt);
   void set_point(int index, const vec &pt);
-  void set_direction(const vec &direction);
+  void set_direction();
   void set_normal();
   void set_length();
   void set_color(const sf::Color &color);
