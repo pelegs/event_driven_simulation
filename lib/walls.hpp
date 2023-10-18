@@ -14,14 +14,14 @@ public:
   ~Wall();
 
   // Getters
-  vec get_p1();
-  vec get_p2();
-  vec get_point(int index);
-  vec get_direction();
-  vec get_normal();
-  double get_length();
-  sf::Color get_color();
-  int get_color(int channel);
+  vec get_p1() const;
+  vec get_p2() const;
+  vec get_point(int index) const;
+  vec get_direction() const;
+  vec get_normal() const;
+  double get_length() const;
+  sf::Color get_color() const;
+  int get_color(int channel) const;
 
   // Setters
   void set_p1(const vec &pt);

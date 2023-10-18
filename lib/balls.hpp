@@ -17,15 +17,15 @@ public:
   ~Ball();
 
   // Getters
-  vec get_pos();
-  double get_pos(int axis);
-  vec get_vel();
-  double get_vel(int axis);
-  double get_mass();
-  double get_mass_inv();
-  double get_radius();
-  sf::Color get_color();
-  int get_color(int channel);
+  vec get_pos() const;
+  double get_pos(int axis) const;
+  vec get_vel() const;
+  double get_vel(int axis) const;
+  double get_mass() const;
+  double get_mass_inv() const;
+  double get_radius() const;
+  sf::Color get_color() const;
+  int get_color(int channel) const;
 
   // Setters
   void set_pos(const vec &p);

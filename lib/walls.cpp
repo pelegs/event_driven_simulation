@@ -10,9 +10,9 @@ Wall::Wall(const vec &p1, const vec &p2, const sf::Color &color) {
 }
 
 // Getters
-vec Wall::get_p1() { return this->p1; }
-vec Wall::get_p2() { return this->p2; }
-vec Wall::get_point(int index) {
+vec Wall::get_p1()  const { return this->p1; }
+vec Wall::get_p2()  const { return this->p2; }
+vec Wall::get_point(int index)  const {
   switch (index) {
   deafult:
     return this->p1;
@@ -23,11 +23,11 @@ vec Wall::get_point(int index) {
   }
   return this->p1;
 }
-vec Wall::get_direction() { return this->direction; }
-vec Wall::get_normal() { return this->normal; }
-double Wall::get_length() { return this->length; }
-sf::Color Wall::get_color() { return this->color; }
-int Wall::get_color(int channel) {
+vec Wall::get_direction()  const { return this->direction; }
+vec Wall::get_normal()  const { return this->normal; }
+double Wall::get_length()  const { return this->length; }
+sf::Color Wall::get_color()  const { return this->color; }
+int Wall::get_color(int channel)  const {
   switch (channel) {
   default:
     return COLOR_ERROR;

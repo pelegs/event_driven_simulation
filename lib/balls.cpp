@@ -22,15 +22,15 @@ Ball::Ball(const vec &pos, const vec &vel, double mass, double radius,
 }
 
 // Getters
-vec Ball::get_pos() { return this->pos; }
-double Ball::get_pos(int axis) { return this->pos[axis]; }
-vec Ball::get_vel() { return this->vel; }
-double Ball::get_vel(int axis) { return this->vel[axis]; }
-double Ball::get_mass() { return this->mass; }
-double Ball::get_mass_inv() { return this->mass_inv; }
-double Ball::get_radius() { return this->radius; }
-sf::Color Ball::get_color() { return this->color; }
-int Ball::get_color(int channel) {
+vec Ball::get_pos()  const { return this->pos; }
+double Ball::get_pos(int axis)  const { return this->pos[axis]; }
+vec Ball::get_vel()  const { return this->vel; }
+double Ball::get_vel(int axis)  const { return this->vel[axis]; }
+double Ball::get_mass()  const { return this->mass; }
+double Ball::get_mass_inv()  const { return this->mass_inv; }
+double Ball::get_radius()  const { return this->radius; }
+sf::Color Ball::get_color()  const { return this->color; }
+int Ball::get_color(int channel)  const {
   switch (channel) {
   default:
     return COLOR_ERROR;
