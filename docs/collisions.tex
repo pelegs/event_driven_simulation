@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[margin=2cm]{geometry}
+\setlength{\parindent}{0pt}
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{esvect}
@@ -12,8 +13,8 @@
 \begin{document}
 \maketitle
 \section{Ball-Ball Collision}
+\subsection{Problem}
 Two perfectly symmetrical balls with radii $r_{i}$  and masses $m_{i}$ ($i\in{1,2}$) collide head-on. At the moment of collision, their positions are $\vec{x}_{i}$ and velocities $\vec{u}_{i}$. What would be their velocities $\vec{v}_{i}$ following the collision?
-
 
 \begin{center}
     \begin{tikzpicture}
@@ -32,6 +33,11 @@ Two perfectly symmetrical balls with radii $r_{i}$  and masses $m_{i}$ ($i\in{1,
     \end{tikzpicture}
 \end{center}
 
+\subsection{Solution}
+
+\underline{Note}: the solution given here is based on the text in \href{https://www.sjsu.edu/faculty/watkins/collision.htm}{this webpage}.
+
+\vspace{1em}
 Conservation of momentum gives
 \begin{equation}
     m_{1}\vec{u}_{1} + m_{2}\vec{u}_{2} = m_{1}\vec{v}_{1} + m_{2}\vec{v}_{2},
@@ -96,7 +102,7 @@ The only thing left to do is to find $\alpha$. Applying \autoref{eq:v_from_u} to
 \end{equation}
 and since $\hat{X}$ is a unit vector, i.e. $\hat{X}\cdot\hat{X}=1$, the above reduces to
 \begin{equation}
-    2\hat{X}\cdot\left(\vec{u}_{1}-\vec{u}_{2}\right) = \alpha\left(\frac{1}{m_{1}+\frac{1}{m_{2}}}\right),
+2\hat{X}\cdot\left(\vec{u}_{1}-\vec{u}_{2}\right) = \alpha\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right),
     \label{eq:reduction_1}
 \end{equation}
 and thus
@@ -108,9 +114,14 @@ and thus
 To simplify things further, we can define two more quantities:
 \begin{align}
     \Delta \vec{u} &= \vec{u}_{1}-\vec{u}_{2},\\
-    M &= \frac{1}{m_{1}}+\frac{1}{m_{2}}.
+    \mu &= \frac{1}{\frac{1}{m_{1}}+\frac{1}{m_{2}}},
+    \label{eq:simplifications_1}
 \end{align}
-
+and then \autoref{eq:reduction_2} simplifies to
+\begin{equation}
+    \alpha = 2\mu\hat{X}\Delta\vec{u}.
+    \label{eq:simplifications_2}
+\end{equation}
 
 \section{Ball-Wall Collision}
 \end{document}
