@@ -11,7 +11,6 @@ class Wall {
 
 public:
   Wall(const vec &p1, const vec &p2, const sf::Color &color);
-  ~Wall();
 
   // Getters
   vec get_p1() const;

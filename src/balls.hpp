@@ -14,7 +14,7 @@ public:
   Ball();
   Ball(const vec &pos, const vec &vel, double mass, double radius,
        const sf::Color &color);
-  ~Ball();
+  // ~Ball();
 
   // Getters
   vec get_pos() const;
