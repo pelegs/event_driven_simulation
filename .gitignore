@@ -34,3 +34,6 @@
 # LaTeX related
 *.aux
 *.log
+
+# clangd related
+*.idx

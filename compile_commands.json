@@ -1,0 +1,18 @@
+[
+    {
+        "arguments": [
+            "g++",
+            "-c",
+            "-std=c++2a",
+            "-Wall",
+            "-O1",
+            "-Isrc",
+            "-Iinclude",
+            "-o",
+            "obj/first_test.o",
+            "tests/first_test.cpp"
+        ],
+        "directory": "/home/pelegs/src/other/event_driven_simulation",
+        "file": "tests/first_test.cpp"
+    }
+]

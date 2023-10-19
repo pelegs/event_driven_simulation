@@ -8,7 +8,7 @@ class Ball {
   vec pos, vel;
   double mass, mass_inv, radius;
   sf::Color color;
-  sf::CircleShape sphere_object;
+  sf::CircleShape shape;
 
 public:
   Ball();
@@ -26,6 +26,7 @@ public:
   double get_radius() const;
   sf::Color get_color() const;
   int get_color(int channel) const;
+  sf::CircleShape get_shape() const;
 
   // Setters
   void set_pos(const vec &p);

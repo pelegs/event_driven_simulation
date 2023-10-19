@@ -1,4 +1,5 @@
 #include "physics.hpp"
+#include <cmath>
 #include <iostream>
 
 void ball_ball_interaction(Ball *b1, Ball *b2) {
@@ -18,4 +19,19 @@ void ball_ball_interaction(Ball *b1, Ball *b2) {
   // Using the above values the new velocities v1 and v2 are calculated.
   b1->set_vel(b1->get_vel() - (a * b1->get_mass_inv()) * k);
   b2->set_vel(b2->get_vel() + (a * b2->get_mass_inv()) * k);
+}
+
+double time_to_collision(Ball *b1, Ball *b2) {
+  vec dr = b1->get_pos() - b2->get_pos();
+  vec dv = b1->get_vel() - b2->get_vel();
+  double dvdr = glm::dot(dv, dr);
+  if (dvdr > .0)
+    return INFINITY;
+  double dr2 = glm::length2(dr);
+  double dv2 = glm::length2(dv);
+  double s2 = std::pow(b1->get_radius() + b2->get_radius(), 2.);
+  double d = dvdr * dvdr - dv2 * (dr2 - s2);
+  if (d < .0)
+    return INFINITY;
+  return -(dvdr+std::sqrt(d))/dv2;
 }

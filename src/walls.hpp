@@ -3,9 +3,11 @@
 
 #include "graphics.hpp"
 #include "maths.hpp"
+#include <array>
 
 class Wall {
   vec p1, p2, direction, normal;
+  sf::Vertex vertices[2];
   double length;
   sf::Color color;
 
@@ -21,6 +23,7 @@ public:
   double get_length() const;
   sf::Color get_color() const;
   int get_color(int channel) const;
+  sf::Vertex *get_vertices();
 
   // Setters
   void set_p1(const vec &pt);
@@ -33,6 +36,7 @@ public:
   void set_color(int channel, int value);
 
   // Graphics related
+  // void draw(sf::RenderWindow *window);
 };
 
 #endif // !WALLS

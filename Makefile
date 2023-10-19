@@ -9,7 +9,6 @@ OBJDIR = obj
 BINDIR = bin
 TESTDIR = tests
 
-
 # Source files
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
@@ -18,11 +17,10 @@ TESTOBJS = $(patsubst $(TESTDIR)/%.cpp,$(OBJDIR)/%.o,$(TESTSRCS))
 
 # Libraries
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
-ADDITIONAL_LIBS = balls walls physics
 CXXFLAGS += -I$(SRCDIR)
 
 # Targets
-TARGET = $(BINDIR)/first_test
+TARGET = $(BINDIR)/test_ball_wall_collision
 
 all: $(TARGET)
 

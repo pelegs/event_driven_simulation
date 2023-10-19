@@ -46,6 +46,10 @@ int Ball::get_color(int channel)  const {
   }
 }
 
+sf::CircleShape Ball::get_shape() const {
+  return this->shape;
+}
+
 // Setters
 void Ball::set_pos(const vec &p) { this->pos = p; }
 void Ball::set_pos(int axis, double x) { this->pos[axis] = x; }
@@ -58,7 +62,7 @@ void Ball::set_mass(double mass) {
 void Ball::set_radius(double radius) { this->radius = radius; }
 void Ball::set_color(const sf::Color &color) {
   this->color = color;
-  this->sphere_object.setFillColor(this->color);
+  this->shape.setFillColor(this->color);
 }
 void Ball::set_color(int channel, int value) {
   switch (channel) {
@@ -77,8 +81,9 @@ void Ball::set_color(int channel, int value) {
 
 // Graphics related
 void Ball::create_shape() {
-  this->sphere_object = sf::CircleShape(this->radius);
-  this->sphere_object.setFillColor(this->color);
+  this->shape = sf::CircleShape(this->radius);
+  this->shape.setPosition(glm_to_sfml_vec2(this->pos));
+  this->shape.setFillColor(this->color);
 }
 
 // Movement
