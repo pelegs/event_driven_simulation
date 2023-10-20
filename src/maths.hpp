@@ -20,6 +20,7 @@ const double PERCISION = 1.0E-7;
 const int num_dim = 2;
 typedef glm::vec<num_dim, double> vec;
 const vec ZERO_VEC = vec(0.0);
+const vec INF_VEC = vec(INFINITY, INFINITY);
 
 // 2D
 const vec X_ = {1., .0};
@@ -53,5 +54,8 @@ sf::Vector2f glm_to_sfml_vec2(const glm::vec<2, double> &vec);
 
 // Converting an FSML Vector2f to GLM vec2 (double)
 glm::vec<2, double> sfml_to_glm_vec2(const sf::Vector2f &vec);
+
+// Converting an FSML Vector2i to GLM vec2 (double)
+glm::vec<2, double> Vector2i_to_vec2(const sf::Vector2i &vec_i);
 
 #endif // !MATHS

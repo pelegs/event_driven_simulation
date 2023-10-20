@@ -13,12 +13,12 @@ Ball::Ball() {
 
 Ball::Ball(const vec &pos, const vec &vel, double mass, double radius,
            const sf::Color &color) {
-  this->set_pos(pos);
   this->set_vel(vel);
   this->set_mass(mass);
   this->set_radius(radius);
   this->set_color(color);
   this->create_shape();
+  this->set_pos(pos); // here so that we can update shape's position as well
 }
 
 // Getters
@@ -51,7 +51,10 @@ sf::CircleShape Ball::get_shape() const {
 }
 
 // Setters
-void Ball::set_pos(const vec &p) { this->pos = p; }
+void Ball::set_pos(const vec &p) {
+  this->pos = p;
+  this->shape.setPosition(glm_to_sfml_vec2(p));
+}
 void Ball::set_pos(int axis, double x) { this->pos[axis] = x; }
 void Ball::set_vel(const vec &v) { this->vel = v; }
 void Ball::set_vel(int axis, double v) { this->vel[axis] = v; }

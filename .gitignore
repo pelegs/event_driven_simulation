@@ -37,3 +37,4 @@
 
 # clangd related
 *.idx
+docs

@@ -13,3 +13,7 @@ sf::Vector2f glm_to_sfml_vec2(const glm::vec<2, double> &vec) {
 glm::vec<2, double> sfml_to_glm_vec2(const sf::Vector2f &vec){
   return glm::vec<2, double>(vec.x, vec.y);
 }
+
+glm::vec<2, double> Vector2i_to_vec2(const sf::Vector2i &vec_i) {
+  return vec((double)vec_i.x, (double)vec_i.y);
+}
