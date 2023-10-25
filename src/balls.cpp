@@ -60,7 +60,10 @@ void Ball::set_mass(double mass) {
   this->mass = mass;
   this->mass_inv = 1. / mass;
 }
-void Ball::set_radius(double radius) { this->radius = radius; }
+void Ball::set_radius(double radius) {
+  this->radius = radius;
+  // this->display_diff = vec(radius*3, radius*3);
+}
 void Ball::set_color(const sf::Color &color) {
   this->color = color;
   this->shape.setFillColor(this->color);
@@ -85,6 +88,7 @@ void Ball::create_shape() {
   this->shape = sf::CircleShape(this->radius);
   this->shape.setPosition(glm_to_sfml_vec2(this->pos));
   this->shape.setFillColor(this->color);
+  this->shape.setOrigin(this->shape.getRadius(), this->shape.getRadius());
 }
 
 // Movement
@@ -97,5 +101,15 @@ void Ball::advance_to_time(double time_next, double time_current) {
 
 // Dynamics
 void Ball::collide_with_wall(const Wall &wall) {
-  this->vel = this->vel - 2*glm::dot(this->vel, wall.get_normal()) * wall.get_normal();
+  this->vel = this->vel -
+              2 * glm::dot(this->vel, wall.get_normal()) * wall.get_normal();
+}
+
+double Ball::time_to_wall_collision(const Wall &wall) {
+  double f = glm::dot(this->vel, wall.get_normal());
+  if (f == 0.)
+    return INFINITY;
+  return (this->radius -
+          glm::dot(this->pos - wall.get_p0(), wall.get_normal())) /
+         f;
 }

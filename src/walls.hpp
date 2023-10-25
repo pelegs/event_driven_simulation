@@ -6,15 +6,17 @@
 #include <array>
 
 class Wall {
+  int id;
   vec p0, normal;
   sf::Color color;
   sf::Vertex line_shape[2];
 
 public:
-  Wall(const vec &p0, const vec &normal, const sf::Color &color,
+  Wall(int id, const vec &p0, const vec &normal, const sf::Color &color,
        double visible_length);
 
   // Getters
+  int get_id() const;
   vec get_p0() const;
   vec get_normal() const;
   sf::Color get_color() const;
@@ -22,6 +24,7 @@ public:
   sf::Vertex *get_line_shape();
 
   // Setters
+  void set_id(int id);
   void set_p0(const vec &pt);
   void set_normal(const vec &normal);
   void set_color(const sf::Color &color);

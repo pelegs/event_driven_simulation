@@ -6,7 +6,7 @@
 #include "walls.hpp"
 
 class Ball {
-  vec pos, vel;
+  vec pos, vel, display_diff;
   double mass, mass_inv, radius;
   sf::Color color;
   sf::CircleShape shape;
@@ -48,6 +48,7 @@ public:
 
   // Dynamics
   void collide_with_wall(const Wall &wall);
+  double time_to_wall_collision(const Wall &wall);
 };
 
 #endif // !BALLS

@@ -1,8 +1,9 @@
 #include "walls.hpp"
 #include <iostream>
 
-Wall::Wall(const vec &p0, const vec &normal, const sf::Color &color,
+Wall::Wall(int id, const vec &p0, const vec &normal, const sf::Color &color,
            double visible_length = 1000.0) {
+  this->set_id(id);
   this->set_p0(p0);
   this->set_normal(glm::normalize(normal));
   this->set_color(color);
@@ -10,6 +11,7 @@ Wall::Wall(const vec &p0, const vec &normal, const sf::Color &color,
 }
 
 // Getters
+int Wall::get_id() const { return this->id; }
 vec Wall::get_p0() const { return this->p0; }
 vec Wall::get_normal() const { return this->normal; }
 sf::Color Wall::get_color() const { return this->color; }
@@ -31,6 +33,7 @@ int Wall::get_color(int channel) const {
 sf::Vertex *Wall::get_line_shape() { return this->line_shape; }
 
 // Setters
+void Wall::set_id(int id) { this->id = id; }
 void Wall::set_p0(const vec &pt) { this->p0 = pt; }
 void Wall::set_normal(const vec &normal) { this->normal = normal; }
 void Wall::set_color(const sf::Color &color) { this->color = color; }
