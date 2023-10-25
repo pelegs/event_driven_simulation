@@ -4,7 +4,7 @@
 Wall::Wall(const vec &p0, const vec &normal,
            const sf::Color &color, double visible_length=1000.0) {
   this->set_p0(p0);
-  this->set_normal(normal);
+  this->set_normal(glm::normalize(normal));
   this->set_color(color);
   this->set_line_shape(visible_length);
 }

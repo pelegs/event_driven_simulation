@@ -49,6 +49,10 @@ double distance1D(double, double);
 // rotated vector)
 vec perp2d(const vec &v);
 
+//
+vec pt_to_plane(const vec &pt, const vec &normal, const vec &p0);
+vec project_pt_on_plane(const vec &pt, const vec &normal, const vec &p0);
+
 // Converting a GLM vec2 (double) to FSML Vector2f
 sf::Vector2f glm_to_sfml_vec2(const glm::vec<2, double> &vec);
 
