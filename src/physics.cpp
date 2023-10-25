@@ -35,13 +35,13 @@ double time_to_collision(Ball *b1, Ball *b2) {
     return INFINITY;
   return -(dvdr+std::sqrt(d))/dv2;
 }
-
-vec vel_wall_intersection_pt(const Ball &ball, const Wall &wall) {
-  vec normed_vel = glm::normalize(ball.get_vel());
-  double d_down = glm::dot(normed_vel, wall.get_normal());
-  if (d_down == 0. || std::isnan(d_down)) // should have tolerance for numertical errors
-    return INF_VEC;
-  double d_up = glm::dot((wall.get_p1() - ball.get_pos()), wall.get_normal());
-  double d = d_up/d_down;
-  return ball.get_pos() + normed_vel * d;
-}
+//
+// vec vel_wall_intersection_pt(const Ball &ball, const Wall &wall) {
+//   vec normed_vel = glm::normalize(ball.get_vel());
+//   double d_down = glm::dot(normed_vel, wall.get_normal());
+//   if (d_down == 0. || std::isnan(d_down)) // should have tolerance for numertical errors
+//     return INF_VEC;
+//   double d_up = glm::dot((wall.get_p1() - ball.get_pos()), wall.get_normal());
+//   double d = d_up/d_down;
+//   return ball.get_pos() + normed_vel * d;
+// }

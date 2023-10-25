@@ -4,8 +4,9 @@
 \usepackage{hyperref}
 
 % Math related
-\usepackage{amsmath, bm}
+\usepackage{amsmath, bm, amsfonts}
 \renewcommand{\vec}[1]{\bm{#1}}
+\newcommand{\bhat}[1]{\bm{\hat{#1}}}
 
 % Physics!
 % \usepackage{physics}
@@ -40,9 +41,13 @@
 %% -- BEGIN DOCUMENT -- %%
 \begin{document}
 \maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        BALL-BALL        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ball-Ball Collision}
 \subsection{Problem}
-Two perfectly spherical $n$-balls with radii $r_{a}, r_{b}$ and masses $m_{a}, m_{b}$ are moving at constant velocities $\vec{u}_{a}, \vec{u}_{b}$. At time $t=0$ their positions are $\vec{x}_{a}, \vec{x}_{b}$. At time $t=\tau$ they collide in an elastic manner.
+Two perfectly spherical $n$-balls ($n\in{2,3}$) with radii $r_{a}, r_{b}$ and masses $m_{a}, m_{b}$ are moving at constant velocities $\vec{u}_{a}, \vec{u}_{b}$. At time $t=0$ their positions are $\vec{x}_{a}, \vec{x}_{b}$. At time $t=\tau$ they collide in an elastic manner.
 
 \vspace{1em}
 \underline{2-dimentional illustration of the collision}:
@@ -195,42 +200,42 @@ Two perfectly spherical $n$-balls with radii $r_{a}, r_{b}$ and masses $m_{a}, m
         \end{equation}
         and normalize it to
         \begin{equation}
-            \hat{X} = \frac{\vec{x}_{a}-\vec{x}_{b}}{\left\|\vec{x}_{a}-\vec{x}_{b} \right\|} = \frac{\vec{x}}{r_{a}+r_{b}}.
+            \bhat{X} = \frac{\vec{x}_{a}-\vec{x}_{b}}{\left\|\vec{x}_{a}-\vec{x}_{b} \right\|} = \frac{\vec{x}}{r_{a}+r_{b}}.
             \label{eq:unit_connect_x1_x2}
         \end{equation}
 
         The change in momentum is this given by
         \begin{equation}
-            m_{a}\left( \vec{u}_{a}-\vec{v}_{a} \right) = -m_{b}\left( \vec{u}_{b}-\vec{v}_{b} \right) = \alpha\hat{X},
+            m_{a}\left( \vec{u}_{a}-\vec{v}_{a} \right) = -m_{b}\left( \vec{u}_{b}-\vec{v}_{b} \right) = \alpha\bhat{X},
             \label{eq:change_in_momentum}
         \end{equation}
         where $\alpha\in\left(0, \infty\right)$.
 
         We can use \autoref{eq:change_in_momentum} to express \autoref{eq:conservation_of_energy_3} as
         \begin{equation}
-            \hat{X}\cdot\left(\vec{u}_{a}+\vec{v}_{a}\right) = \hat{X}\cdot\left(\vec{u}_{b}+\vec{v}_{b}\right),
+            \bhat{X}\cdot\left(\vec{u}_{a}+\vec{v}_{a}\right) = \bhat{X}\cdot\left(\vec{u}_{b}+\vec{v}_{b}\right),
             \label{eq:label}
         \end{equation}
         and using \autoref{eq:change_in_momentum} we get the following expressions for the velocities $\vec{v}_{i}$:
         \begin{align}
-            \vec{v}_{a} &= \vec{u}_{a} - \frac{\alpha}{m_{a}}\hat{X},\nonumber\\
-            \vec{v}_{b} &= \vec{u}_{b} + \frac{\alpha}{m_{b}}\hat{X}.
+            \vec{v}_{a} &= \vec{u}_{a} - \frac{\alpha}{m_{a}}\bhat{X},\nonumber\\
+            \vec{v}_{b} &= \vec{u}_{b} + \frac{\alpha}{m_{b}}\bhat{X}.
             \label{eq:v_from_u}
         \end{align}
 
         The only thing left to do is to find $\alpha$. Applying \autoref{eq:v_from_u} to \autoref{eq:conservation_of_energy_3} we find that
         \begin{equation}
-            \hat{X}\cdot\left(2\vec{u}_{a}-\frac{\alpha}{m_{a}}\hat{X}\right) = \hat{X}\left(2\vec{u}_{b}+\frac{\alpha}{m_{b}}\hat{X}\right).
+            \bhat{X}\cdot\left(2\vec{u}_{a}-\frac{\alpha}{m_{a}}\bhat{X}\right) = \bhat{X}\left(2\vec{u}_{b}+\frac{\alpha}{m_{b}}\bhat{X}\right).
             \label{eq:find_alpha}
         \end{equation}
-        and since $\hat{X}$ is a unit vector, i.e. $\hat{X}\cdot\hat{X}=1$, the above reduces to
+        and since $\bhat{X}$ is a unit vector, i.e. $\bhat{X}\cdot\bhat{X}=1$, the above reduces to
         \begin{equation}
-        2\hat{X}\cdot\left(\vec{u}_{a}-\vec{u}_{b}\right) = \alpha\left(\frac{1}{m_{a}}+\frac{1}{m_{b}}\right),
+        2\bhat{X}\cdot\left(\vec{u}_{a}-\vec{u}_{b}\right) = \alpha\left(\frac{1}{m_{a}}+\frac{1}{m_{b}}\right),
             \label{eq:reduction_1}
         \end{equation}
         and thus
         \begin{equation}
-        \alpha = \frac{2\hat{X}\left(\vec{u}_{a}-\vec{u}_{b}\right)}{\frac{1}{m_{a}}+\frac{1}{m_{b}}}.
+        \alpha = \frac{2\bhat{X}\left(\vec{u}_{a}-\vec{u}_{b}\right)}{\frac{1}{m_{a}}+\frac{1}{m_{b}}}.
             \label{eq:reduction_2}
         \end{equation}
 
@@ -242,8 +247,51 @@ Two perfectly spherical $n$-balls with radii $r_{a}, r_{b}$ and masses $m_{a}, m
         \end{align}
         and then \autoref{eq:reduction_2} simplifies to
         \begin{equation}
-            \alpha = 2\mu\hat{X}\Delta\vec{u}.
+            \alpha = 2\mu\bhat{X}\Delta\vec{u}.
             \label{eq:simplifications_2}
         \end{equation}
 \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Ball-Wall        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ball-Wall Collision}
+\subsection{Problem}
+Given a single ball moving with a constant velocity $\vec{u}$ and a wall defined as a rectangular cut of a plane with normal $\bhat{n}$ and containing the point $\vec{p}$ -
+
+\begin{enumerate}
+    \item will the ball collide with the wall at any time $t\geq0$?
+    \item If there is a collision - at what point in space and at what time does it occur, and
+    \item what is the velocity $\vec{v}$ of the ball immediately following the collision?
+\end{enumerate}
+
+\subsection{Solution}
+\begin{enumerate}
+    \item We will use the following steps to check for collision between a ball and a wall: first we check if there is an intersection between the wall's (infinite) plane and the line defined by the ball's position and velocity. If the intersection doesn't happens in the past, we will check if the intersection point is within the rectangular section of the plane. (figure?)
+
+        The position of the ball as a function of time is given by \autoref{eq:position_vs_time}. Adjusting to this section it is
+        \begin{equation}
+            \vec{x}(t) = \vec{x} + \vec{u}t,
+            \label{eq:position_vs_time_ball_wall}
+        \end{equation}
+        where $\vec{x}$ is the initial position of the ball and $t\in\mathbb{R}$. On the other hand, the equation defining the entire (infinite) plane of the wall is given by the set of all points $\vec{p}$ for which
+        \begin{equation}
+            \left(\vec{p}-\vec{p}_{0}\right)\cdot \bhat{n} = 0,
+            \label{eq:wall_plane}
+        \end{equation}
+        where $\vec{p}_{0}$ is any \textit{known} point on the plane and $\bhat{n}$ is the normal to the plane. Subtituting \autoref{eq:position_vs_time_ball_wall} into \autoref{eq:wall_plane} we get
+        \begin{equation}
+            \left(\left(\vec{x}+\vec{u}t\right)-\vec{p}_{0}\right)\cdot\bhat{n} = 0.
+            \label{eq:line_plane_1}
+        \end{equation}
+        
+        Expanding and solving for $t$ we get
+        \begin{equation}
+            t = \frac{\left(\vec{p}_{0}-\vec{x}\right)\cdot\bhat{n}}{\vec{u}\cdot\bhat{n}}.
+            \label{eq:line_plane_2}
+        \end{equation}
+
+        If $\vec{u}\cdot\bhat{n}=0$ then the ball is moving at a trajectory parallel to the wall. If $\vec{u}\cdot\bhat{n}\neq0$ then $t$ is a real number, and we need to check whether it is larger than or equal to $0$ (i.e. validating that the collision didn't happen in the past) and whether the.
+\end{enumerate}
+
 \end{document}
