@@ -56,8 +56,7 @@ int main(int argc, char *argv[]) {
     window.draw(mouse_cursor);
     for (long unsigned int i = 0; i < walls.size(); ++i) {
       window.draw(walls[i]->get_line_shape(), 2, sf::Lines);
-      pt_on_wall = project_pt_on_plane(mouse_pos_vec, walls[i]->get_normal(),
-                                       walls[i]->get_p0());
+      pt_on_wall = walls[i]->pt_projection(mouse_pos_vec);
       line_to_wall[0] = mouse_pos;
       line_to_wall[1] = glm_to_sfml_vec2(pt_on_wall);
       window.draw(line_to_wall, 2, sf::Lines);

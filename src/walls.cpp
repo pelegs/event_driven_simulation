@@ -1,8 +1,8 @@
 #include "walls.hpp"
 #include <iostream>
 
-Wall::Wall(const vec &p0, const vec &normal,
-           const sf::Color &color, double visible_length=1000.0) {
+Wall::Wall(const vec &p0, const vec &normal, const sf::Color &color,
+           double visible_length = 1000.0) {
   this->set_p0(p0);
   this->set_normal(glm::normalize(normal));
   this->set_color(color);
@@ -60,3 +60,8 @@ void Wall::set_line_shape(double visible_length) {
 // Graphics
 // void Wall::draw(sf::RenderWindow &window) { window->draw(this->vertices, 2,
 // sf::Lines); }
+
+// Maths stuff
+vec Wall::pt_projection(const vec &pt) {
+  return project_pt_on_plane(pt, this->normal, this->p0);
+}

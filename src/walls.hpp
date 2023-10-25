@@ -30,6 +30,9 @@ public:
 
   // Graphics related
   // void draw(sf::RenderWindow *window);
+  
+  // Maths stuff
+  vec pt_projection(const vec &pt);
 };
 
 #endif // !WALLS
