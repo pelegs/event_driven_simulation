@@ -20,7 +20,7 @@ LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 CXXFLAGS += -I$(SRCDIR)
 
 # Targets
-TARGET = $(BINDIR)/test_ball_wall_collision
+TARGET = $(BINDIR)/ball_wall_collision
 
 all: $(TARGET)
 

@@ -22,15 +22,15 @@ Ball::Ball(const vec &pos, const vec &vel, double mass, double radius,
 }
 
 // Getters
-vec Ball::get_pos()  const { return this->pos; }
-double Ball::get_pos(int axis)  const { return this->pos[axis]; }
-vec Ball::get_vel()  const { return this->vel; }
-double Ball::get_vel(int axis)  const { return this->vel[axis]; }
-double Ball::get_mass()  const { return this->mass; }
-double Ball::get_mass_inv()  const { return this->mass_inv; }
-double Ball::get_radius()  const { return this->radius; }
-sf::Color Ball::get_color()  const { return this->color; }
-int Ball::get_color(int channel)  const {
+vec Ball::get_pos() const { return this->pos; }
+double Ball::get_pos(int axis) const { return this->pos[axis]; }
+vec Ball::get_vel() const { return this->vel; }
+double Ball::get_vel(int axis) const { return this->vel[axis]; }
+double Ball::get_mass() const { return this->mass; }
+double Ball::get_mass_inv() const { return this->mass_inv; }
+double Ball::get_radius() const { return this->radius; }
+sf::Color Ball::get_color() const { return this->color; }
+int Ball::get_color(int channel) const {
   switch (channel) {
   default:
     return COLOR_ERROR;
@@ -46,9 +46,7 @@ int Ball::get_color(int channel)  const {
   }
 }
 
-sf::CircleShape Ball::get_shape() const {
-  return this->shape;
-}
+sf::CircleShape Ball::get_shape() const { return this->shape; }
 
 // Setters
 void Ball::set_pos(const vec &p) {
@@ -90,7 +88,14 @@ void Ball::create_shape() {
 }
 
 // Movement
-void Ball::advance_by_dt(double dt) { this->pos += this->vel * dt; }
+void Ball::advance_by_dt(double dt) {
+  this->set_pos(this->pos + this->vel * dt);
+}
 void Ball::advance_to_time(double time_next, double time_current) {
   this->advance_by_dt(time_next - time_current);
+}
+
+// Dynamics
+void Ball::collide_with_wall(const Wall &wall) {
+  this->vel = this->vel - 2*glm::dot(this->vel, wall.get_normal()) * wall.get_normal();
 }

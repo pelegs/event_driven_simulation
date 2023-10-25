@@ -3,6 +3,7 @@
 
 #include "graphics.hpp"
 #include "maths.hpp"
+#include "walls.hpp"
 
 class Ball {
   vec pos, vel;
@@ -44,6 +45,9 @@ public:
   // Movement
   void advance_by_dt(double dt);
   void advance_to_time(double time_next, double time_current);
+
+  // Dynamics
+  void collide_with_wall(const Wall &wall);
 };
 
 #endif // !BALLS
