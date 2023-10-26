@@ -38,4 +38,6 @@ public:
   vec pt_projection(const vec &pt);
 };
 
+typedef std::vector<Wall *> Walls_Ptr_Vec;
+
 #endif // !WALLS

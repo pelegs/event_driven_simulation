@@ -37,14 +37,15 @@ SimEvent get_next_event(std::priority_queue<SimEvent> *event_queue,
 
 int main(int argc, char *argv[]) {
   // Parameters
-  double width = 1500., height = 1500., diff = 100.;
+  double width = 1500., height = 1500., diff = 50.;
   vec SCREEN_CENTER(width / 2., height / 2.);
 
   // Create ball
   vec ball_pos = SCREEN_CENTER - vec(50., 50.);
   vec ball_vel = X_ - 0.25 * Y_;
-  Ball ball(ball_pos, ball_vel, 1.0, 50.0, sf::Color::Red);
-  double next_event_time = -1., current_time = 0., dt = 5;
+  double ball_radius = atof(argv[1]);
+  Ball ball(ball_pos, ball_vel, 1.0, ball_radius, sf::Color::Red);
+  double next_event_time = -1., current_time = 0., dt = atof(argv[2]);
 
   // Create walls
   Wall wall_h1(0, vec(diff, diff), -Y_, sf::Color::Red, width);

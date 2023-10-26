@@ -51,4 +51,6 @@ public:
   double time_to_wall_collision(const Wall &wall);
 };
 
+typedef std::vector<Ball *> Balls_Ptr_Vec;
+
 #endif // !BALLS
