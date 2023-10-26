@@ -109,7 +109,7 @@ double Ball::time_to_wall_collision(const Wall &wall) {
   double f = glm::dot(this->vel, wall.get_normal());
   if (f == 0.)
     return INFINITY;
-  return (this->radius -
-          glm::dot(this->pos - wall.get_p0(), wall.get_normal())) /
+  return (- this->radius +
+          glm::dot(wall.get_p0() - this->pos, wall.get_normal())) /
          f;
 }
