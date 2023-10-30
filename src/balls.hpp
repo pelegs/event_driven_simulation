@@ -30,6 +30,7 @@ public:
   sf::Color get_color() const;
   int get_color(int channel) const;
   sf::CircleShape get_shape() const;
+  void get_data() const;
 
   // Setters
   void set_id(int id);

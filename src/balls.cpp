@@ -1,6 +1,7 @@
 #include "balls.hpp"
 #include "graphics.hpp"
 #include <csignal>
+#include <iostream>
 
 Ball::Ball() {
   this->set_id(-1);
@@ -50,6 +51,10 @@ int Ball::get_color(int channel) const {
 }
 
 sf::CircleShape Ball::get_shape() const { return this->shape; }
+void Ball::get_data() const {
+  std::cout << "-----------------------" << std::endl;
+  std::cout << "id: " << this->id << ", pos = " << glm::to_string(this->pos) << ", vel = " << glm::to_string(this->vel) << ", m = " << this->mass << ", m_inv = " << this->mass_inv << ", radius = " << this->radius << ", color = #" << std::hex << this->color.toInteger() << std::endl;
+}
 
 // Setters
 void Ball::set_id(int id) { this->id = id; }
