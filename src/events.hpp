@@ -3,6 +3,7 @@
 
 #include "balls.hpp"
 #include "walls.hpp"
+#include "physics.hpp"
 
 #include <queue>
 

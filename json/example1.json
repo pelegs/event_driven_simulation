@@ -1,0 +1,53 @@
+{
+    "system": {
+        "size": {
+            "width": 1000,
+            "height": 1000
+        },
+        "delta_time": 1,
+        "balls": [
+            {
+                "id": 0,
+                "pos": [200, 300, 0],
+                "vel": [10, -10, 0],
+                "mass": 1,
+                "radius": 10,
+                "color": "Red"
+            },
+            {
+                "id": 1,
+                "pos": [700, 400, 0],
+                "vel": [10, 0, 0],
+                "mass": 2.5,
+                "radius": 7.5,
+                "color": "Green"
+            }
+        ],
+        "walls": [
+            {
+                "id": 0,
+                "normal": [0, 1, 0],
+                "p0": [0, 0, 0],
+                "color": "Red"
+            },
+            {
+                "id": 1,
+                "normal": [1, 0, 0],
+                "p0": [0, 0, 0],
+                "color": "Green"
+            },
+            {
+                "id": 2,
+                "normal": [0, 1, 0],
+                "p0": [0, 1000, 0],
+                "color": "Blue"
+            },
+            {
+                "id": 3,
+                "normal": [1, 0, 0],
+                "p0": [0, 1000, 0],
+                "color": "White"
+            }
+        ]
+    }
+}

@@ -6,6 +6,7 @@
 #include "walls.hpp"
 
 class Ball {
+  int id;
   vec pos, vel, display_diff;
   double mass, mass_inv, radius;
   sf::Color color;
@@ -13,11 +14,12 @@ class Ball {
 
 public:
   Ball();
-  Ball(const vec &pos, const vec &vel, double mass, double radius,
+  Ball(int id, const vec &pos, const vec &vel, double mass, double radius,
        const sf::Color &color);
   // ~Ball();
 
   // Getters
+  int get_id() const;
   vec get_pos() const;
   double get_pos(int axis) const;
   vec get_vel() const;
@@ -30,6 +32,7 @@ public:
   sf::CircleShape get_shape() const;
 
   // Setters
+  void set_id(int id);
   void set_pos(const vec &p);
   void set_pos(int axis, double x);
   void set_vel(const vec &v);
@@ -51,6 +54,7 @@ public:
   double time_to_wall_collision(const Wall &wall);
 };
 
+typedef std::vector<Ball> Balls_Vec;
 typedef std::vector<Ball *> Balls_Ptr_Vec;
 
 #endif // !BALLS

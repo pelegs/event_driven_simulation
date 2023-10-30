@@ -20,7 +20,7 @@ LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 CXXFLAGS += -I$(SRCDIR)
 
 # Targets
-TARGET = $(BINDIR)/collision_time_run
+TARGET = $(BINDIR)/testing_json_read
 
 all: $(TARGET)
 

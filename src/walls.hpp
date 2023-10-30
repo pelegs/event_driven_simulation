@@ -39,5 +39,6 @@ public:
 };
 
 typedef std::vector<Wall *> Walls_Ptr_Vec;
+typedef std::vector<Wall> Walls_Vec;
 
 #endif // !WALLS

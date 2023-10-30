@@ -3,6 +3,7 @@
 #include <csignal>
 
 Ball::Ball() {
+  this->set_id(-1);
   this->set_pos(ZERO_VEC);
   this->set_vel(ZERO_VEC);
   this->set_mass(1.0);
@@ -11,8 +12,9 @@ Ball::Ball() {
   this->create_shape();
 }
 
-Ball::Ball(const vec &pos, const vec &vel, double mass, double radius,
+Ball::Ball(int id, const vec &pos, const vec &vel, double mass, double radius,
            const sf::Color &color) {
+  this->set_id(id);
   this->set_vel(vel);
   this->set_mass(mass);
   this->set_radius(radius);
@@ -22,6 +24,7 @@ Ball::Ball(const vec &pos, const vec &vel, double mass, double radius,
 }
 
 // Getters
+int Ball::get_id() const { return this->id; }
 vec Ball::get_pos() const { return this->pos; }
 double Ball::get_pos(int axis) const { return this->pos[axis]; }
 vec Ball::get_vel() const { return this->vel; }
@@ -49,6 +52,7 @@ int Ball::get_color(int channel) const {
 sf::CircleShape Ball::get_shape() const { return this->shape; }
 
 // Setters
+void Ball::set_id(int id) { this->id = id; }
 void Ball::set_pos(const vec &p) {
   this->pos = p;
   this->shape.setPosition(glm_to_sfml_vec2(p));
@@ -109,7 +113,7 @@ double Ball::time_to_wall_collision(const Wall &wall) {
   double f = glm::dot(this->vel, wall.get_normal());
   if (f == 0.)
     return INFINITY;
-  return (- this->radius +
+  return (-this->radius +
           glm::dot(wall.get_p0() - this->pos, wall.get_normal())) /
          f;
 }
