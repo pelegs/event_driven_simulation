@@ -13,7 +13,8 @@ rapidjson::Document load_json(const char *filename) {
   return doc;
 }
 
-void create_ball(const rapidjson::Document &json_data) {
+Balls_Vec create_balls(const rapidjson::Document &json_data) {
+  Balls_Vec balls;
   const rapidjson::Value &balls_list = json_data["system"]["balls"];
   assert(balls_list.IsArray());
   for (rapidjson::Value::ConstValueIterator itr = balls_list.Begin();
@@ -41,8 +42,9 @@ void create_ball(const rapidjson::Document &json_data) {
 
     // Generate ball
     Ball ball(id, pos, vel, mass, radius, sf::Color::White);
-    ball.get_data();
+    balls.push_back(ball);
   }
+  return balls;
 }
 
 // Balls_Vec create_balls_vec(const rapidjson::Document &doc);

@@ -10,5 +10,4 @@
 
 rapidjson::Document load_json(const char *filename);
 
-void create_ball(const rapidjson::Document &json_data);
-Balls_Vec create_balls_vec(const rapidjson::Document &doc);
+Balls_Vec create_balls(const rapidjson::Document &ball_data);
