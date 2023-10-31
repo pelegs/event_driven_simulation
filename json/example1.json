@@ -12,7 +12,7 @@
                 "vel": [10, -10, 0],
                 "mass": 1,
                 "radius": 10,
-                "color": "Red"
+                "color": [255, 0, 0]
             },
             {
                 "id": 1,
@@ -20,7 +20,7 @@
                 "vel": [10, 0, 0],
                 "mass": 2.5,
                 "radius": 7.5,
-                "color": "Green"
+                "color": [0, 255, 0]
             }
         ],
         "walls": [
@@ -28,25 +28,25 @@
                 "id": 0,
                 "p0": [0, 0, 0],
                 "normal": [0, 1, 0],
-                "color": "Red"
+                "color": [255, 0, 0]
             },
             {
                 "id": 1,
                 "p0": [0, 0, 0],
                 "normal": [1, 0, 0],
-                "color": "Green"
+                "color": [0, 255, 0]
             },
             {
                 "id": 2,
                 "normal": [0, 1, 0],
                 "p0": [0, 1000, 0],
-                "color": "Blue"
+                "color": [0, 0, 255]
             },
             {
                 "id": 3,
                 "normal": [1, 0, 0],
                 "p0": [0, 1000, 0],
-                "color": "White"
+                "color": [255, 255, 255]
             }
         ]
     }

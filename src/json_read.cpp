@@ -40,8 +40,16 @@ Balls_Vec create_balls(const rapidjson::Document &balls_data) {
     vel.y = vel_arr[1].GetDouble();
     // vel.z = vel_arr[2].GetDouble();
 
+    // Color
+    sf::Color color;
+    const rapidjson::Value &color_arr = (*itr)["color"];
+    assert(color_arr.IsArray());
+    color.r = color_arr[0].GetInt();
+    color.g = color_arr[1].GetInt();
+    color.b = color_arr[2].GetInt();
+
     // Generate ball
-    Ball ball(id, pos, vel, mass, radius, sf::Color::White);
+    Ball ball(id, pos, vel, mass, radius, color);
     balls.push_back(ball);
   }
   return balls;
@@ -72,8 +80,16 @@ Walls_Vec create_walls(const rapidjson::Document &walls_data) {
     normal.y = normal_arr[1].GetDouble();
     // pos.z = pos_arr[2].GetDouble();
 
+    // Color
+    sf::Color color;
+    const rapidjson::Value &color_arr = (*itr)["color"];
+    assert(color_arr.IsArray());
+    color.r = color_arr[0].GetInt();
+    color.g = color_arr[1].GetInt();
+    color.b = color_arr[2].GetInt();
+
     // Generate wall
-    Wall wall(id, p0, normal, sf::Color::White);
+    Wall wall(id, p0, normal, color);
     walls.push_back(wall);
   }
   return walls;

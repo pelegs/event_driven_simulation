@@ -1,5 +1,6 @@
 #include "balls.hpp"
 #include "graphics.hpp"
+#include "fmt/format.h"
 #include <csignal>
 #include <iostream>
 
