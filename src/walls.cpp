@@ -1,13 +1,11 @@
 #include "walls.hpp"
 #include <iostream>
 
-Wall::Wall(int id, const vec &p0, const vec &normal, const sf::Color &color,
-           double visible_length = 1000.0) {
+Wall::Wall(int id, const vec &p0, const vec &normal, const sf::Color &color) {
   this->set_id(id);
   this->set_p0(p0);
   this->set_normal(glm::normalize(normal));
   this->set_color(color);
-  this->set_line_shape(visible_length);
 }
 
 // Getters
@@ -31,6 +29,12 @@ int Wall::get_color(int channel) const {
   }
 }
 sf::Vertex *Wall::get_line_shape() { return this->line_shape; }
+void Wall::get_data() const {
+  std::cout << "-----------------------" << std::endl;
+  std::cout << "Wall id: " << this->id << ", p0 = " << glm::to_string(this->p0)
+            << ", normal = " << glm::to_string(this->normal)
+            << ", color = #" << std::hex << this->color.toInteger() << std::endl;
+}
 
 // Setters
 void Wall::set_id(int id) { this->id = id; }

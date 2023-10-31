@@ -13,9 +13,9 @@ rapidjson::Document load_json(const char *filename) {
   return doc;
 }
 
-Balls_Vec create_balls(const rapidjson::Document &json_data) {
+Balls_Vec create_balls(const rapidjson::Document &balls_data) {
   Balls_Vec balls;
-  const rapidjson::Value &balls_list = json_data["system"]["balls"];
+  const rapidjson::Value &balls_list = balls_data["system"]["balls"];
   assert(balls_list.IsArray());
   for (rapidjson::Value::ConstValueIterator itr = balls_list.Begin();
        itr != balls_list.End(); ++itr) {
@@ -47,4 +47,34 @@ Balls_Vec create_balls(const rapidjson::Document &json_data) {
   return balls;
 }
 
-// Balls_Vec create_balls_vec(const rapidjson::Document &doc);
+Walls_Vec create_walls(const rapidjson::Document &walls_data) {
+  Walls_Vec walls;
+  const rapidjson::Value &walls_list = walls_data["system"]["walls"];
+  assert(walls_list.IsArray());
+  for (rapidjson::Value::ConstValueIterator itr = walls_list.Begin();
+       itr != walls_list.End(); ++itr) {
+    // Single-valued parameter
+    int id = (*itr)["id"].GetInt();
+
+    // p0
+    vec p0;
+    const rapidjson::Value &p0_arr = (*itr)["p0"];
+    assert(p0_arr.IsArray());
+    p0.x = p0_arr[0].GetDouble();
+    p0.y = p0_arr[1].GetDouble();
+    // pos.z = pos_arr[2].GetDouble();
+
+    // Normal
+    vec normal;
+    const rapidjson::Value &normal_arr = (*itr)["normal"];
+    assert(normal_arr.IsArray());
+    normal.x = normal_arr[0].GetDouble();
+    normal.y = normal_arr[1].GetDouble();
+    // pos.z = pos_arr[2].GetDouble();
+
+    // Generate wall
+    Wall wall(id, p0, normal, sf::Color::White);
+    walls.push_back(wall);
+  }
+  return walls;
+}

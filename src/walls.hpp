@@ -12,8 +12,7 @@ class Wall {
   sf::Vertex line_shape[2];
 
 public:
-  Wall(int id, const vec &p0, const vec &normal, const sf::Color &color,
-       double visible_length);
+  Wall(int id, const vec &p0, const vec &normal, const sf::Color &color);
 
   // Getters
   int get_id() const;
@@ -22,6 +21,7 @@ public:
   sf::Color get_color() const;
   int get_color(int channel) const;
   sf::Vertex *get_line_shape();
+  void get_data() const;
 
   // Setters
   void set_id(int id);
