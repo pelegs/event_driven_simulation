@@ -25,7 +25,25 @@ void System::add_ball(Ball *ball) { this->balls.push_back(ball); }
 void System::add_wall(Wall *wall) { this->walls.push_back(wall); }
 
 // Dynamics
-void System::next_step() {}
+void System::calculate_interactions_for_ball(Ball *subject_ball,
+                                             Ball *exclude_ball) {
+  // Calculate all interactions with other balls, excluding exclude_ball
+  for (auto iterated_ball : this->balls) {
+    if (iterated_ball != subject_ball && iterated_ball != exclude_ball) {
+      double event_time = time_to_collision(subject_ball, iterated_ball);
+      SimEvent event(event_time, subject_ball, iterated_ball);
+      this->event_queue.push(event);
+    }
+  }
+
+  // Calculate all interactions with walls
+  for (auto wall : this->walls) {
+    double event_time = subject_ball->time_to_wall_collision(*wall);
+    SimEvent event(event_time, subject_ball, wall);
+    this->event_queue.push(event);
+  }
+}
+void System::calculate_next_step() {}
 
 // Graphics
 void System::draw(sf::RenderWindow *window) {

@@ -1,6 +1,7 @@
 #include "balls.hpp"
-#include "graphics.hpp"
+#include "events.hpp"
 #include "fmt/format.h"
+#include "graphics.hpp"
 #include <csignal>
 #include <iostream>
 
@@ -52,9 +53,14 @@ int Ball::get_color(int channel) const {
 }
 
 sf::CircleShape Ball::get_shape() const { return this->shape; }
+std::vector<SimEvent *> Ball::get_events() const { return this->events_list; }
 void Ball::get_data() const {
   std::cout << "-----------------------" << std::endl;
-  std::cout << "id: " << this->id << ", pos = " << glm::to_string(this->pos) << ", vel = " << glm::to_string(this->vel) << ", m = " << this->mass << ", m_inv = " << this->mass_inv << ", radius = " << this->radius << ", color = #" << std::hex << this->color.toInteger() << std::endl;
+  std::cout << "id: " << this->id << ", pos = " << glm::to_string(this->pos)
+            << ", vel = " << glm::to_string(this->vel) << ", m = " << this->mass
+            << ", m_inv = " << this->mass_inv << ", radius = " << this->radius
+            << ", color = #" << std::hex << this->color.toInteger()
+            << std::endl;
 }
 
 // Setters
@@ -91,6 +97,20 @@ void Ball::set_color(int channel, int value) {
     this->color.a = value;
     break;
   }
+}
+
+// Events-related
+void Ball::add_event(SimEvent *event) {
+  this->events_list.push_back(event);
+}
+void Ball::invalidate_events() {
+  // Invalidates all pointers to events containing this ball.
+  // After setting them to inactive we clear the list of POINTERS
+  // as we don't need to list them with this ball anymore.
+  for (auto event:this->events_list) {
+    event->active = false;
+  }
+  this->events_list.clear();
 }
 
 // Graphics related

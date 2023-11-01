@@ -5,12 +5,15 @@
 #include "maths.hpp"
 #include "walls.hpp"
 
+struct SimEvent; // this is for having a list of (pointers to) events in Ball
+
 class Ball {
   int id;
   vec pos, vel, display_diff;
   double mass, mass_inv, radius;
   sf::Color color;
   sf::CircleShape shape;
+  std::vector<SimEvent *> events_list;
 
 public:
   Ball();
@@ -30,6 +33,7 @@ public:
   sf::Color get_color() const;
   int get_color(int channel) const;
   sf::CircleShape get_shape() const;
+  std::vector<SimEvent *> get_events() const;
   void get_data() const;
 
   // Setters
@@ -42,6 +46,10 @@ public:
   void set_radius(double radius);
   void set_color(const sf::Color &color);
   void set_color(int channel, int value);
+
+  // Events-related
+  void add_event(SimEvent *event);
+  void invalidate_events();
 
   // Graphics related
   void create_shape();

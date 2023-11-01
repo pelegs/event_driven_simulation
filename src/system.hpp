@@ -30,7 +30,8 @@ public:
   void add_wall(Wall *wall);
 
   // Dynamics
-  void next_step();
+  void calculate_interactions_for_ball(Ball *subject_ball, Ball *exclude_ball);
+  void calculate_next_step();
 
   // Graphics
   void draw(sf::RenderWindow *window);
