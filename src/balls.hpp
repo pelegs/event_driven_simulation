@@ -57,10 +57,6 @@ public:
   // Movement
   void advance_by_dt(double dt);
   void advance_to_time(double time_next, double time_current);
-
-  // Dynamics
-  void collide_with_wall(const Wall &wall);
-  double time_to_wall_collision(const Wall &wall);
 };
 
 typedef std::vector<Ball> Balls_Vec;

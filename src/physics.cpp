@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 
+// Ball-Ball collisions
 void ball_ball_interaction(Ball *b1, Ball *b2) {
   // The following values are calculated:
   // * du: difference in initial velocities between the balls (i.e. du = u_1 -
@@ -21,7 +22,7 @@ void ball_ball_interaction(Ball *b1, Ball *b2) {
   b2->set_vel(b2->get_vel() + (a * b2->get_mass_inv()) * k);
 }
 
-double time_to_collision(Ball *b1, Ball *b2) {
+double time_to_ball_ball_collision(Ball *b1, Ball *b2) {
   vec dr = b1->get_pos() - b2->get_pos();
   vec dv = b1->get_vel() - b2->get_vel();
   double dvdr = glm::dot(dv, dr);
@@ -33,15 +34,24 @@ double time_to_collision(Ball *b1, Ball *b2) {
   double d = dvdr * dvdr - dv2 * (dr2 - s2);
   if (d < .0)
     return INFINITY;
-  return -(dvdr+std::sqrt(d))/dv2;
+  return -(dvdr + std::sqrt(d)) / dv2;
 }
-//
-// vec vel_wall_intersection_pt(const Ball &ball, const Wall &wall) {
-//   vec normed_vel = glm::normalize(ball.get_vel());
-//   double d_down = glm::dot(normed_vel, wall.get_normal());
-//   if (d_down == 0. || std::isnan(d_down)) // should have tolerance for numertical errors
-//     return INF_VEC;
-//   double d_up = glm::dot((wall.get_p1() - ball.get_pos()), wall.get_normal());
-//   double d = d_up/d_down;
-//   return ball.get_pos() + normed_vel * d;
-// }
+
+// Ball-Wall collisions
+void ball_wall_interaction(Ball *ball, Wall *wall) {
+  vec ball_vel = ball->get_vel();
+  ball->set_vel(ball_vel - 2 * glm::dot(ball_vel, wall->get_normal()) *
+                               wall->get_normal());
+}
+
+double time_to_ball_wall_collision(Ball *ball, Wall *wall) {
+  double ball_radius = ball->get_radius();
+  vec ball_pos = ball->get_pos();
+  vec ball_vel = ball->get_vel();
+  double f = glm::dot(ball_vel, wall->get_normal());
+  if (f == 0.)
+    return INFINITY;
+  return (-ball_radius +
+          glm::dot(wall->get_p0() - ball_pos, wall->get_normal())) /
+         f;
+}
