@@ -13,8 +13,8 @@ rapidjson::Document load_json(const char *filename) {
   return doc;
 }
 
-Balls_Vec create_balls(const rapidjson::Document &balls_data) {
-  Balls_Vec balls;
+Balls_Ptr_Vec create_balls(const rapidjson::Document &balls_data) {
+  Balls_Ptr_Vec balls;
   const rapidjson::Value &balls_list = balls_data["system"]["balls"];
   assert(balls_list.IsArray());
   for (rapidjson::Value::ConstValueIterator itr = balls_list.Begin();
@@ -49,14 +49,13 @@ Balls_Vec create_balls(const rapidjson::Document &balls_data) {
     color.b = color_arr[2].GetInt();
 
     // Generate ball
-    Ball ball(id, pos, vel, mass, radius, color);
-    balls.push_back(ball);
+    balls.push_back(new Ball(id, pos, vel, mass, radius, color));
   }
   return balls;
 }
 
-Walls_Vec create_walls(const rapidjson::Document &walls_data) {
-  Walls_Vec walls;
+Walls_Ptr_Vec create_walls(const rapidjson::Document &walls_data) {
+  Walls_Ptr_Vec walls;
   const rapidjson::Value &walls_list = walls_data["system"]["walls"];
   assert(walls_list.IsArray());
   for (rapidjson::Value::ConstValueIterator itr = walls_list.Begin();
@@ -89,8 +88,7 @@ Walls_Vec create_walls(const rapidjson::Document &walls_data) {
     color.b = color_arr[2].GetInt();
 
     // Generate wall
-    Wall wall(id, p0, normal, color);
-    walls.push_back(wall);
+    walls.push_back(new Wall(id, p0, normal, color));
   }
   return walls;
 }

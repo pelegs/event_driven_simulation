@@ -18,7 +18,7 @@ class System {
 public:
   System(double width, double height, double dt, const Balls_Ptr_Vec &balls,
          const Walls_Ptr_Vec &walls, const EventQueue &event_queue,
-         const Timer &timer);
+         const Timer &timer, double visible_wall_size);
 
   // Getters
   double get_width() const;

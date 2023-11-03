@@ -13,7 +13,7 @@
 
 rapidjson::Document load_json(const char *filename);
 
-Balls_Vec create_balls(const rapidjson::Document &balls_data);
-Walls_Vec create_walls(const rapidjson::Document &walls_data);
+Balls_Ptr_Vec create_balls(const rapidjson::Document &balls_data);
+Walls_Ptr_Vec create_walls(const rapidjson::Document &walls_data);
 
 #endif // !JSON_READ;
