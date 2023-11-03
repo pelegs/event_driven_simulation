@@ -1,4 +1,5 @@
 #include "system.hpp"
+#include <iostream>
 
 System::System(double width, double height, double dt,
                const Balls_Ptr_Vec &balls, const Walls_Ptr_Vec &walls,
@@ -30,7 +31,8 @@ void System::calculate_interactions_for_ball(Ball *subject_ball,
   // Calculate all interactions with other balls, excluding exclude_ball
   for (auto iterated_ball : this->balls) {
     if (iterated_ball != subject_ball && iterated_ball != exclude_ball) {
-      double event_time = time_to_ball_ball_collision(subject_ball, iterated_ball);
+      double event_time =
+          time_to_ball_ball_collision(subject_ball, iterated_ball);
       SimEvent event(event_time, subject_ball, iterated_ball);
       this->event_queue.push(event);
     }
@@ -47,10 +49,11 @@ void System::calculate_next_step() {}
 
 // Graphics
 void System::draw(sf::RenderWindow *window) {
-  window->clear();
-  for (auto wall : walls)
+  for (auto wall : walls) {
+    std::cout << wall->get_id() << std::endl;
     window->draw(wall->get_line_shape(), 2, sf::Lines);
-  for (auto ball : balls)
-    window->draw(ball->get_shape());
-  window->display();
+  }
+  std::cout << "----------------------" << std::endl;
+  // for (auto ball : balls)
+  //   window->draw(ball->get_shape());
 }

@@ -1,4 +1,5 @@
 #include "events.hpp"
+#include "physics.hpp"
 #include <cmath>
 
 bool operator<(const SimEvent &lhs, const SimEvent &rhs) {
@@ -41,15 +42,15 @@ SimEvent get_next_event(std::priority_queue<SimEvent> *event_queue,
     for (auto ball_it_2 = (ball_it_1 + 1); ball_it_2 != balls.end();
          ++ball_it_2) {
       auto &ball_2 = *ball_it_2;
-      double time_to_ball_ball_collision = time_to_collision(ball_1, ball_2);
-      SimEvent ball_ball_collision(time_to_ball_ball_collision, ball_1, ball_2);
-      if (time_to_ball_ball_collision > .01)
+      double event_time = time_to_ball_ball_collision(ball_1, ball_2);
+      SimEvent ball_ball_collision(event_time, ball_1, ball_2);
+      if (event_time > .01)
         event_queue->push(ball_ball_collision);
     }
     for (auto wall : walls) {
-      double time_to_collision = ball_1->time_to_wall_collision(*wall);
-      SimEvent wall_collision(time_to_collision, ball_1, wall);
-      if (time_to_collision > .01)
+      double event_time = time_to_ball_wall_collision(ball_1, wall);
+      SimEvent wall_collision(event_time, ball_1, wall);
+      if (event_time > .01)
         event_queue->push(wall_collision);
     }
   }

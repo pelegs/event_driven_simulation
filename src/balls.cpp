@@ -128,18 +128,3 @@ void Ball::advance_by_dt(double dt) {
 void Ball::advance_to_time(double time_next, double time_current) {
   this->advance_by_dt(time_next - time_current);
 }
-
-// Dynamics
-void Ball::collide_with_wall(const Wall &wall) {
-  this->vel = this->vel -
-              2 * glm::dot(this->vel, wall.get_normal()) * wall.get_normal();
-}
-
-double Ball::time_to_wall_collision(const Wall &wall) {
-  double f = glm::dot(this->vel, wall.get_normal());
-  if (f == 0.)
-    return INFINITY;
-  return (-this->radius +
-          glm::dot(wall.get_p0() - this->pos, wall.get_normal())) /
-         f;
-}

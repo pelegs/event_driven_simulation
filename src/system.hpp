@@ -1,3 +1,6 @@
+#ifndef SYSTEM
+#define SYSTEM
+
 #include "balls.hpp"
 #include "events.hpp"
 #include "graphics.hpp"
@@ -36,3 +39,5 @@ public:
   // Graphics
   void draw(sf::RenderWindow *window);
 };
+
+#endif // !SYSTEM
