@@ -6,10 +6,10 @@
 #include "balls.hpp"
 #include "events.hpp"
 #include "graphics.hpp"
+#include "json_read.hpp"
 #include "maths.hpp"
 #include "physics.hpp"
 #include "walls.hpp"
-#include "json_read.hpp"
 
 #include <SFML/Graphics/Shape.hpp>
 #include <SFML/Graphics/Vertex.hpp>
@@ -24,7 +24,7 @@ void clear_queue(std::priority_queue<SimEvent> *pq) {
 }
 
 SimEvent get_next_event_single_ball(std::priority_queue<SimEvent> *event_queue,
-                        std::vector<Wall *> walls, Ball *ball) {
+                                    std::vector<Wall *> walls, Ball *ball) {
   clear_queue(event_queue);
   for (auto wall : walls) {
     double time_to_collision = time_to_ball_wall_collision(ball, wall);
@@ -44,12 +44,33 @@ int main(int argc, char *argv[]) {
 
   // Events management
   std::priority_queue<SimEvent> event_queue;
-  SimEvent next_event = get_next_event_single_ball(&event_queue, system.get_walls(), ball);
+  SimEvent next_event =
+      get_next_event_single_ball(&event_queue, system.get_walls(), ball);
   std::cout << next_event.event_time << std::endl;
 
   // Graphics setup
-  sf::RenderWindow window(sf::VideoMode(system.get_width(), system.get_height()), "SFML graphics test");
+  sf::RenderWindow window(
+      sf::VideoMode(system.get_width(), system.get_height()),
+      "SFML graphics test");
   window.setMouseCursorVisible(false);
+
+  // test
+  sf::Font font;
+  if (!font.loadFromFile(
+          "/usr/share/fonts/truetype/HackNerdFont-Regular.ttf")) {
+    std::cout << "Font error" << std::endl;
+  }
+  sf::Text text;
+  int num_chars = 20;
+  char buffer[num_chars];
+  int num_events = 0;
+  std::snprintf(buffer, num_chars, "%04d", num_events);
+  std::string text_str(buffer);
+  text.setFont(font); // font is a sf::Font
+  text.setString(text_str);
+  text.setCharacterSize(100); // in pixels, not points!
+  text.setFillColor(sf::Color::Red);
+  text.setStyle(sf::Text::Bold);
 
   // Main loop
   while (window.isOpen()) {
@@ -66,16 +87,24 @@ int main(int argc, char *argv[]) {
       ball_wall_interaction(ball, next_event.wall);
 
       // Calculate next event
-      next_event = get_next_event_single_ball(&event_queue, system.get_walls(), ball);
+      next_event =
+          get_next_event_single_ball(&event_queue, system.get_walls(), ball);
       next_event_time = current_time + next_event.event_time;
     } else {
       current_time += system.get_dt();
       ball->advance_by_dt(system.get_dt());
     }
+    num_events = event_queue.size();
 
     // Draw
     window.clear();
+
     system.draw(&window);
+    std::snprintf(buffer, num_chars, "%04d", num_events);
+    text_str = std::string(buffer);
+    text.setString(text_str);
+    window.draw(text);
+
     window.display();
 
     // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
