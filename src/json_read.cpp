@@ -92,3 +92,16 @@ Walls_Ptr_Vec create_walls(const rapidjson::Document &walls_data) {
   }
   return walls;
 }
+
+System create_system(const rapidjson::Document &system_data) {
+  const rapidjson::Value &system_root = system_data["system"];
+  double width = system_root["size"]["width"].GetDouble();
+  double height = system_root["size"]["height"].GetDouble();
+  double dt = system_root["delta_time"].GetDouble();
+  Balls_Ptr_Vec balls = create_balls(system_data);
+  Walls_Ptr_Vec walls = create_walls(system_data);
+  EventQueue event_queue;
+  Timer timer;
+  System system(width, height, dt, balls, walls, event_queue, timer, 1500);
+  return system;
+}

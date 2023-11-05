@@ -1,6 +1,12 @@
 #include "system.hpp"
 #include <iostream>
 
+System::System() {
+  this->width = 0.;
+  this->height = 0.;
+  this->dt = 0.;
+}
+
 System::System(double width, double height, double dt,
                const Balls_Ptr_Vec &balls, const Walls_Ptr_Vec &walls,
                const EventQueue &event_queue, const Timer &timer,
@@ -23,6 +29,8 @@ double System::get_dt() const { return this->dt; }
 Ball *System::get_ball(int i) const { return this->balls[i]; }
 Wall *System::get_wall(int i) const { return this->walls[i]; }
 double System::get_current_time() const { return this->timer.time; }
+Balls_Ptr_Vec System::get_balls() const { return this->balls; };
+Walls_Ptr_Vec System::get_walls() const { return this->walls; };
 
 // Add objects
 void System::add_ball(Ball *ball) { this->balls.push_back(ball); }

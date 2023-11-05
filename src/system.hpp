@@ -16,6 +16,7 @@ class System {
   Timer timer;
 
 public:
+  System();
   System(double width, double height, double dt, const Balls_Ptr_Vec &balls,
          const Walls_Ptr_Vec &walls, const EventQueue &event_queue,
          const Timer &timer, double visible_wall_size);
@@ -27,6 +28,8 @@ public:
   Ball *get_ball(int i) const;
   Wall *get_wall(int i) const;
   double get_current_time() const;
+  Balls_Ptr_Vec get_balls() const;
+  Walls_Ptr_Vec get_walls() const;
 
   // Add objects
   void add_ball(Ball *ball);

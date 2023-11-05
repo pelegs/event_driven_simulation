@@ -16,7 +16,7 @@ enum EventType {
 struct SimEvent {
   EventType type;
   bool active;
-  double time_to_event;
+  double event_time;
   Wall *wall = NULL;
   Ball *ball_1 = NULL;
   Ball *ball_2 = NULL;
